@@ -1,0 +1,71 @@
+# 0-add_integer.txt
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+check for two positive integers.
+>>> add_integer(1, 2)
+3
+
+check for two floats.
+>>> add_integer(1.0, 2.0)
+3
+
+Checks for only one value
+>>> add_integer(2)
+100
+
+Check for float and int
+>>> add_integer(100.3, -2)
+98
+
+Check for wrong values
+>>> add_integer(4, "School")
+Traceback (most recent call last):
+	...
+TypeError: b must be an integer
+
+>>> add_integer(None)
+Traceback (most recent call last):
+	...
+TypeError: a must be an integer
+
+>>> add_integer("School", 7)
+Traceback (most recent call last):
+	...
+TypeError: a must be an integer
+
+>>> add_integer(4, None)
+Traceback (most recent call last):
+	...
+TypeError: b must be an integer
+
+Check for very large number.
+>>> add_integer(float("inf"), 5)
+Traceback (most recent call last):
+	...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(5, float("inf"))
+Traceback (most recent call last):
+        ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(float("-inf"), 8)
+Traceback (most recent call last):
+        ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(float("NaN"), 6)
+Traceback (most recent call last):
+	...
+ValueError: cannot convert float NaN to integer
+
+>>> add_integer(2, float("-inf"))
+Traceback (most recent call last):
+        ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer()
+Traceback (most recent call last):
+	...
+TypeError: add_integer() missing 1 required positional argument: 'a'
