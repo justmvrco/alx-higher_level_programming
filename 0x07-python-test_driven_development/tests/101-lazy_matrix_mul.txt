@@ -1,0 +1,118 @@
+The ``lazy_matrix_mul module``
+=========================
+
+Using ``lazy_matrix_mul``
+-------------------
+
+Importing function
+	>>> lazy_matrix_mul = __import__("101-lazy_matrix_mul").lazy_matrix_mul
+
+Check for mod docstring:
+	>>> mod = __import__("101-lazy_matrix_mul").__doc__
+	>>> len(mod) > 1
+	True
+
+Check func doctring:
+	>>> doc = lazy_matrix_mul.__doc__
+	>>> len(doc) > 1
+	True
+
+Test Normal Case:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> m_b = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, m_b)
+	array([[ 7, 10],
+	       [15, 22]])
+
+Test No arguments:
+	>>> lazy_matrix_mul()
+	Traceback (most recent call last):
+	...
+	TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+Test for passing empty list:
+	>>> m_b = [[1, 2], [3, 4], [5, 6]]
+	>>> lazy_matrix_mul([], m_b)
+	Traceback (most recent call last):
+	...
+	ValueError: shapes (0,) and (3,2) not aligned: 0 (dim 0) != 3 (dim 0)
+
+Test for passing empty list:
+	>>> m_a = [[1, 2], [3, 4], [5, 6]]
+	>>> lazy_matrix_mul(m_a, [])
+	Traceback (most recent call last):
+	...
+	ValueError: shapes (3,2) and (0,) not aligned: 2 (dim 1) != 0 (dim 0)
+
+Test for passing empty list in list:
+	>>> m_a = [[1, 2], [3, 4], [5, 6]]
+	>>> m_b = [[1, 2], []]
+	>>> lazy_matrix_mul(m_a, m_b)
+	Traceback (most recent call last):
+	...
+	ValueError: setting an array element with a sequence.
+
+Test Three arguments:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> m_b = [[1, 2], [3, 4]]
+	>>> m_c = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, m_b, m_c)
+	Traceback (most recent call last):
+	...
+	TypeError: lazy_matrix_mul() takes 2 positional arguments but 3 were given
+
+Test Passing String:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, "Chuck")
+	Traceback (most recent call last):
+	...
+	ValueError: Scalar operands are not allowed, use '*' instead
+
+Test Passing None:
+	>>> m_b = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(None, m_b)
+	...
+	Traceback (most recent call last):
+	...
+	TypeError: Object arrays are not currently supported
+
+Test Passing None:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, None)
+	...
+	Traceback (most recent call last):
+	...
+	TypeError: Object arrays are not currently supported
+
+Test Passing String in list:
+	>>> m_a = [[1, "Chuck"], [3, 4]]
+	>>> m_b = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, m_b)
+	Traceback (most recent call last):
+	...
+	TypeError: invalid data type for einsum
+
+Test Passing String in list:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> m_b = [[1, "Chuck"], [3, 4]]
+	>>> lazy_matrix_mul(m_a, m_b)
+	Traceback (most recent call last):
+	...
+	TypeError: invalid data type for einsum
+
+Test for matrix mismatched row size:
+	>>> m_a = [[1, 2], [3, 4, 5]]
+	>>> m_b = [[1, 2], [3, 4]]
+	>>> lazy_matrix_mul(m_a, m_b)
+	Traceback (most recent call last):
+	...
+	ValueError: setting an array element with a sequence.
+
+Test for matrix mismatched row size:
+	>>> m_a = [[1, 2], [3, 4]]
+	>>> m_b = [[1, 2], [3, 4, 5]]
+	>>> lazy_matrix_mul(m_a, m_b)
+	Traceback (most recent call last):
+	...
+	ValueError: setting an array element with a sequence.
+
